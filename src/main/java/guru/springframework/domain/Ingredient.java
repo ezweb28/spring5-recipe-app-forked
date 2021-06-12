@@ -21,11 +21,10 @@ public class Ingredient {
     public Ingredient() {
     }
 
-    public Ingredient(String descriptions, BigDecimal amount, UnitOfMeasure uom, Recipe recipe) {
+    public Ingredient(String descriptions, BigDecimal amount, UnitOfMeasure uom) {
         this.descriptions = descriptions;
         this.amount = amount;
         this.uom = uom;
-        this.recipe = recipe;
     }
 
     public Long getId() {
