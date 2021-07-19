@@ -15,7 +15,7 @@ public class IngredientCommandToIngredientTest {
 
     public static final Recipe RECIPE = new Recipe();
     public static final BigDecimal AMOUNT = new BigDecimal("1");
-    public static final String DESCRIPTION = "Cheeseburger";
+    public static final String DESCRIPTIONS = "Cheeseburger";
     public static final Long ID_VALUE = 1L;
     public static final Long UOM_ID = 2L;
 
@@ -42,7 +42,7 @@ public class IngredientCommandToIngredientTest {
         IngredientCommand command = new IngredientCommand();
         command.setId(ID_VALUE);
         command.setAmount(AMOUNT);
-        command.setDescription(DESCRIPTION);
+        command.setDescriptions(DESCRIPTIONS);
         UnitOfMeasureCommand unitOfMeasureCommand = new UnitOfMeasureCommand();
         unitOfMeasureCommand.setId(UOM_ID);
         command.setUom(unitOfMeasureCommand);
@@ -55,7 +55,7 @@ public class IngredientCommandToIngredientTest {
         assertNotNull(ingredient.getUom());
         assertEquals(ID_VALUE, ingredient.getId());
         assertEquals(AMOUNT, ingredient.getAmount());
-        assertEquals(DESCRIPTION, ingredient.getDescriptions());
+        assertEquals(DESCRIPTIONS, ingredient.getDescriptions());
         assertEquals(UOM_ID, ingredient.getUom().getId());
     }
 
@@ -65,7 +65,7 @@ public class IngredientCommandToIngredientTest {
         IngredientCommand command = new IngredientCommand();
         command.setId(ID_VALUE);
         command.setAmount(AMOUNT);
-        command.setDescription(DESCRIPTION);
+        command.setDescriptions(DESCRIPTIONS);
         UnitOfMeasureCommand unitOfMeasureCommand = new UnitOfMeasureCommand();
 
         //when
@@ -76,6 +76,6 @@ public class IngredientCommandToIngredientTest {
         assertNull(ingredient.getUom());
         assertEquals(ID_VALUE, ingredient.getId());
         assertEquals(AMOUNT, ingredient.getAmount());
-        assertEquals(DESCRIPTION, ingredient.getDescriptions());
+        assertEquals(DESCRIPTIONS, ingredient.getDescriptions());
     }
 }
