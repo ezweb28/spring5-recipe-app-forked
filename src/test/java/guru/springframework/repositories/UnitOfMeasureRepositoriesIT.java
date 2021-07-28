@@ -17,7 +17,7 @@ import static org.junit.Assert.assertEquals;
 public class UnitOfMeasureRepositoriesIT {
 
     @Autowired
-    UnitOfMeasureRepositories unitOfMeasureRepositories;
+    UnitOfMeasureRepository unitOfMeasureRepositories;
 
     @Before
     public void setUp() throws Exception {
