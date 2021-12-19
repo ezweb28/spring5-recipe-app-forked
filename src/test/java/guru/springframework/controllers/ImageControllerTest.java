@@ -13,7 +13,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.multipart;
@@ -53,6 +52,7 @@ public class ImageControllerTest {
                 .andExpect(model().attributeExists("recipe"));
 
         verify(recipeService, times(1)).findCommandById(anyLong());
+
     }
 
     @Test
@@ -68,6 +68,7 @@ public class ImageControllerTest {
         verify(imageService, times(1)).saveImageFile(anyLong(), any());
     }
 
+
     @Test
     public void renderImageFromDB() throws Exception {
 
@@ -80,7 +81,7 @@ public class ImageControllerTest {
 
         int i = 0;
 
-        for (byte primByte : s.getBytes()) {
+        for (byte primByte : s.getBytes()){
             bytesBoxed[i++] = primByte;
         }
 
@@ -93,8 +94,8 @@ public class ImageControllerTest {
                 .andExpect(status().isOk())
                 .andReturn().getResponse();
 
-        byte[] responseBytes = response.getContentAsByteArray();
+        byte[] reponseBytes = response.getContentAsByteArray();
 
-        assertEquals(s.getBytes().length, responseBytes.length);
+        assertEquals(s.getBytes().length, reponseBytes.length);
     }
 }

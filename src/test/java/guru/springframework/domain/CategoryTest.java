@@ -1,20 +1,24 @@
 package guru.springframework.domain;
 
-import junit.framework.TestCase;
 import org.junit.Before;
 import org.junit.Test;
 
-public class CategoryTest extends TestCase {
+import static org.junit.Assert.assertEquals;
+
+/**
+ * Created by jt on 6/17/17.
+ */
+public class CategoryTest {
 
     Category category;
 
     @Before
-    public void setUp() {
+    public void setUp(){
         category = new Category();
     }
 
     @Test
-    public void testGetId() {
+    public void getId() throws Exception {
         Long idValue = 4L;
 
         category.setId(idValue);
@@ -23,10 +27,11 @@ public class CategoryTest extends TestCase {
     }
 
     @Test
-    public void testGetDescription() {
+    public void getDescription() throws Exception {
     }
 
     @Test
-    public void testGetRecipes() {
+    public void getRecipes() throws Exception {
     }
+
 }

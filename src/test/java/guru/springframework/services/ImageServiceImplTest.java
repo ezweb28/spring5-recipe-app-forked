@@ -13,8 +13,8 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.Optional;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.*;
+
 
 public class ImageServiceImplTest {
 
@@ -49,9 +49,9 @@ public class ImageServiceImplTest {
         imageService.saveImageFile(id, multipartFile);
 
         //then
-        verify(recipeRepository, times(1)).findById(anyLong());
         verify(recipeRepository, times(1)).save(argumentCaptor.capture());
         Recipe savedRecipe = argumentCaptor.getValue();
         assertEquals(multipartFile.getBytes().length, savedRecipe.getImage().length);
     }
+
 }

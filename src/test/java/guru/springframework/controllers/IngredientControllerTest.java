@@ -27,10 +27,10 @@ public class IngredientControllerTest {
     IngredientService ingredientService;
 
     @Mock
-    RecipeService recipeService;
+    UnitOfMeasureService unitOfMeasureService;
 
     @Mock
-    UnitOfMeasureService unitOfMeasureService;
+    RecipeService recipeService;
 
     IngredientController controller;
 
@@ -40,7 +40,7 @@ public class IngredientControllerTest {
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
 
-        controller = new IngredientController(recipeService, ingredientService, unitOfMeasureService);
+        controller = new IngredientController(ingredientService, recipeService, unitOfMeasureService);
         mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
     }
 
@@ -93,6 +93,7 @@ public class IngredientControllerTest {
                 .andExpect(model().attributeExists("uomList"));
 
         verify(recipeService, times(1)).findCommandById(anyLong());
+
     }
 
     @Test
@@ -130,20 +131,19 @@ public class IngredientControllerTest {
         )
                 .andExpect(status().is3xxRedirection())
                 .andExpect(view().name("redirect:/recipe/2/ingredient/3/show"));
+
     }
 
     @Test
     public void testDeleteIngredient() throws Exception {
+
         //then
         mockMvc.perform(get("/recipe/2/ingredient/3/delete")
-//                No need
-//                .contentType(MediaType.APPLICATION_FORM_URLENCODED)
-//                .param("id", "")
-//                .param("description", "some string")
         )
                 .andExpect(status().is3xxRedirection())
                 .andExpect(view().name("redirect:/recipe/2/ingredients"));
 
         verify(ingredientService, times(1)).deleteById(anyLong(), anyLong());
+
     }
 }

@@ -18,7 +18,7 @@ public class RecipeToRecipeCommandTest {
     public static final Integer SERVINGS = Integer.valueOf("3");
     public static final String SOURCE = "Source";
     public static final String URL = "Some URL";
-    public static final Long CAT_ID1 = 1L;
+    public static final Long CAT_ID_1 = 1L;
     public static final Long CAT_ID2 = 2L;
     public static final Long INGRED_ID_1 = 3L;
     public static final Long INGRED_ID_2 = 4L;
@@ -30,8 +30,7 @@ public class RecipeToRecipeCommandTest {
         converter = new RecipeToRecipeCommand(
                 new CategoryToCategoryCommand(),
                 new IngredientToIngredientCommand(new UnitOfMeasureToUnitOfMeasureCommand()),
-                new NotesToNotesCommand()
-        );
+                new NotesToNotesCommand());
     }
 
     @Test
@@ -64,7 +63,7 @@ public class RecipeToRecipeCommandTest {
         recipe.setNotes(notes);
 
         Category category = new Category();
-        category.setId(CAT_ID1);
+        category.setId(CAT_ID_1);
 
         Category category2 = new Category();
         category2.setId(CAT_ID2);
@@ -98,5 +97,7 @@ public class RecipeToRecipeCommandTest {
         assertEquals(NOTES_ID, command.getNotes().getId());
         assertEquals(2, command.getCategories().size());
         assertEquals(2, command.getIngredients().size());
+
     }
+
 }

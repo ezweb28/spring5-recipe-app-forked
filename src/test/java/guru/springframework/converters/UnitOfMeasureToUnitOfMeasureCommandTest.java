@@ -7,9 +7,13 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
+/**
+ * Created by jt on 6/21/17.
+ */
 public class UnitOfMeasureToUnitOfMeasureCommandTest {
+
     public static final String DESCRIPTION = "description";
-    public static final Long LONG_VALUE = 1L;
+    public static final Long LONG_VALUE = new Long(1L);
 
     UnitOfMeasureToUnitOfMeasureCommand converter;
 
@@ -41,4 +45,5 @@ public class UnitOfMeasureToUnitOfMeasureCommandTest {
         assertEquals(LONG_VALUE, uomc.getId());
         assertEquals(DESCRIPTION, uomc.getDescription());
     }
+
 }

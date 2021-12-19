@@ -33,6 +33,7 @@ public class IngredientServiceImplTest {
 
     IngredientService ingredientService;
 
+    //init converters
     public IngredientServiceImplTest() {
         this.ingredientToIngredientCommand = new IngredientToIngredientCommand(new UnitOfMeasureToUnitOfMeasureCommand());
         this.ingredientCommandToIngredient = new IngredientCommandToIngredient(new UnitOfMeasureCommandToUnitOfMeasure());
@@ -42,15 +43,16 @@ public class IngredientServiceImplTest {
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
 
-        ingredientService = new IngredientServiceImpl(ingredientToIngredientCommand, ingredientCommandToIngredient, recipeRepository, unitOfMeasureRepository);
+        ingredientService = new IngredientServiceImpl(ingredientToIngredientCommand, ingredientCommandToIngredient,
+                recipeRepository, unitOfMeasureRepository);
     }
 
     @Test
-    public void findByRecipeIdAndIngredientId() throws Exception {
+    public void findByRecipeIdAndId() throws Exception {
     }
 
     @Test
-    public void findByRecipeIdAndIngredientIdHappyPath() throws Exception {
+    public void findByRecipeIdAndReceipeIdHappyPath() throws Exception {
         //given
         Recipe recipe = new Recipe();
         recipe.setId(1L);
@@ -62,7 +64,7 @@ public class IngredientServiceImplTest {
         ingredient2.setId(1L);
 
         Ingredient ingredient3 = new Ingredient();
-        ingredient2.setId(3L);
+        ingredient3.setId(3L);
 
         recipe.addIngredient(ingredient1);
         recipe.addIngredient(ingredient2);
@@ -71,15 +73,15 @@ public class IngredientServiceImplTest {
 
         when(recipeRepository.findById(anyLong())).thenReturn(recipeOptional);
 
-        //when
+        //then
         IngredientCommand ingredientCommand = ingredientService.findByRecipeIdAndIngredientId(1L, 3L);
 
-        //then
+        //when
         assertEquals(Long.valueOf(3L), ingredientCommand.getId());
         assertEquals(Long.valueOf(1L), ingredientCommand.getRecipeId());
         verify(recipeRepository, times(1)).findById(anyLong());
-
     }
+
 
     @Test
     public void testSaveRecipeCommand() throws Exception {
@@ -104,6 +106,7 @@ public class IngredientServiceImplTest {
         assertEquals(Long.valueOf(3L), savedCommand.getId());
         verify(recipeRepository, times(1)).findById(anyLong());
         verify(recipeRepository, times(1)).save(any(Recipe.class));
+
     }
 
     @Test
@@ -125,5 +128,4 @@ public class IngredientServiceImplTest {
         verify(recipeRepository, times(1)).findById(anyLong());
         verify(recipeRepository, times(1)).save(any(Recipe.class));
     }
-
 }

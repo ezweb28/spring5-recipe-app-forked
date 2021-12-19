@@ -39,7 +39,7 @@ public class UnitOfMeasureServiceImplTest {
         unitOfMeasures.add(uom1);
 
         UnitOfMeasure uom2 = new UnitOfMeasure();
-        uom1.setId(2L);
+        uom2.setId(2L);
         unitOfMeasures.add(uom2);
 
         when(unitOfMeasureRepository.findAll()).thenReturn(unitOfMeasures);
@@ -50,6 +50,6 @@ public class UnitOfMeasureServiceImplTest {
         //then
         assertEquals(2, commands.size());
         verify(unitOfMeasureRepository, times(1)).findAll();
-
     }
+
 }

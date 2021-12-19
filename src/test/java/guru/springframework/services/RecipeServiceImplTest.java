@@ -1,5 +1,6 @@
 package guru.springframework.services;
 
+
 import guru.springframework.commands.RecipeCommand;
 import guru.springframework.converters.RecipeCommandToRecipe;
 import guru.springframework.converters.RecipeToRecipeCommand;
@@ -19,6 +20,9 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.mockito.Mockito.*;
 
+/**
+ * Created by jt on 6/17/17.
+ */
 public class RecipeServiceImplTest {
 
     RecipeServiceImpl recipeService;
@@ -27,31 +31,16 @@ public class RecipeServiceImplTest {
     RecipeRepository recipeRepository;
 
     @Mock
-    RecipeCommandToRecipe recipeCommandToRecipe;
+    RecipeToRecipeCommand recipeToRecipeCommand;
 
     @Mock
-    RecipeToRecipeCommand recipeToRecipeCommand;
+    RecipeCommandToRecipe recipeCommandToRecipe;
 
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
 
         recipeService = new RecipeServiceImpl(recipeRepository, recipeCommandToRecipe, recipeToRecipeCommand);
-    }
-
-    @Test
-    public void getRecipes() {
-
-        Recipe recipe = new Recipe();
-        HashSet recipesData = new HashSet();
-        recipesData.add(recipe);
-
-        when(recipeRepository.findAll()).thenReturn(recipesData);
-        Set<Recipe> recipes = recipeService.getRecipes();
-
-        assertEquals(recipes.size(), 1);
-        verify(recipeRepository, times(1)).findAll();
-//        verify(recipeRepository, never()).findAll();
     }
 
     @Test
@@ -78,7 +67,12 @@ public class RecipeServiceImplTest {
 
         Recipe recipeReturned = recipeService.findById(1L);
 
-        //Should go boom
+        //should go boom
+    }
+
+    @Test(expected = NumberFormatException.class)
+    public void getRecipeById_throws_NumberFormatException_when_id_is_not_a_number() throws Exception{
+        recipeService.findById(Long.valueOf("asd"));
     }
 
     @Test
@@ -103,25 +97,25 @@ public class RecipeServiceImplTest {
 
     @Test
     public void getRecipesTest() throws Exception {
-        Recipe recipe = new Recipe();
-        HashSet<Recipe> recipesData = new HashSet();
-        recipesData.add(recipe);
 
-        when(recipeService.getRecipes()).thenReturn(recipesData);
+        Recipe recipe = new Recipe();
+        HashSet receipesData = new HashSet();
+        receipesData.add(recipe);
+
+        when(recipeService.getRecipes()).thenReturn(receipesData);
 
         Set<Recipe> recipes = recipeService.getRecipes();
 
         assertEquals(recipes.size(), 1);
         verify(recipeRepository, times(1)).findAll();
         verify(recipeRepository, never()).findById(anyLong());
-
     }
 
     @Test
     public void testDeleteById() throws Exception {
 
         //given
-        Long idToDelete = 2L;
+        Long idToDelete = Long.valueOf(2L);
 
         //when
         recipeService.deleteById(idToDelete);

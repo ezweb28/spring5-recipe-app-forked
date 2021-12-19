@@ -11,12 +11,16 @@ import java.math.BigDecimal;
 
 import static org.junit.Assert.*;
 
+/**
+ * Created by jt on 6/21/17.
+ */
 public class IngredientToIngredientCommandTest {
+
     public static final Recipe RECIPE = new Recipe();
     public static final BigDecimal AMOUNT = new BigDecimal("1");
-    public static final String DESCRIPTIONS = "Cheeseburger";
-    public static final Long UOM_ID = 2L;
-    public static final Long ID_VALUE = 1L;
+    public static final String DESCRIPTION = "Cheeseburger";
+    public static final Long UOM_ID = new Long(2L);
+    public static final Long ID_VALUE = new Long(1L);
 
 
     IngredientToIngredientCommand converter;
@@ -43,7 +47,7 @@ public class IngredientToIngredientCommandTest {
         ingredient.setId(ID_VALUE);
         ingredient.setRecipe(RECIPE);
         ingredient.setAmount(AMOUNT);
-        ingredient.setDescriptions(DESCRIPTIONS);
+        ingredient.setDescription(DESCRIPTION);
         ingredient.setUom(null);
         //when
         IngredientCommand ingredientCommand = converter.convert(ingredient);
@@ -51,7 +55,7 @@ public class IngredientToIngredientCommandTest {
         assertNull(ingredientCommand.getUom());
         assertEquals(ID_VALUE, ingredientCommand.getId());
         assertEquals(AMOUNT, ingredientCommand.getAmount());
-        assertEquals(DESCRIPTIONS, ingredientCommand.getDescriptions());
+        assertEquals(DESCRIPTION, ingredientCommand.getDescription());
     }
 
     @Test
@@ -61,7 +65,7 @@ public class IngredientToIngredientCommandTest {
         ingredient.setId(ID_VALUE);
         ingredient.setRecipe(RECIPE);
         ingredient.setAmount(AMOUNT);
-        ingredient.setDescriptions(DESCRIPTIONS);
+        ingredient.setDescription(DESCRIPTION);
 
         UnitOfMeasure uom = new UnitOfMeasure();
         uom.setId(UOM_ID);
@@ -75,6 +79,6 @@ public class IngredientToIngredientCommandTest {
         assertEquals(UOM_ID, ingredientCommand.getUom().getId());
         // assertEquals(RECIPE, ingredientCommand.get);
         assertEquals(AMOUNT, ingredientCommand.getAmount());
-        assertEquals(DESCRIPTIONS, ingredientCommand.getDescriptions());
+        assertEquals(DESCRIPTION, ingredientCommand.getDescription());
     }
 }

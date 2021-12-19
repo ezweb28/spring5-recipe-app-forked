@@ -8,7 +8,8 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class NotesCommandToNotesTest {
-    public static final Long ID_VALUE = 1L;
+
+    public static final Long ID_VALUE = new Long(1L);
     public static final String RECIPE_NOTES = "Notes";
     NotesCommandToNotes converter;
 
@@ -43,4 +44,5 @@ public class NotesCommandToNotesTest {
         assertEquals(ID_VALUE, notes.getId());
         assertEquals(RECIPE_NOTES, notes.getRecipeNotes());
     }
+
 }

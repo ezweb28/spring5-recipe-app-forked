@@ -8,8 +8,11 @@ import lombok.Setter;
 import java.util.HashSet;
 import java.util.Set;
 
-@Setter
+/**
+ * Created by jt on 6/21/17.
+ */
 @Getter
+@Setter
 @NoArgsConstructor
 public class RecipeCommand {
     private Long id;
