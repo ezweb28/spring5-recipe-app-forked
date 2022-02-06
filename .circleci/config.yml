@@ -36,7 +36,7 @@ jobs:
           key: v1-dependencies-{{ checksum "pom.xml" }}
 
       # Then run your tests!
-      - run: mvn integration-test cobertura:cobertura
+      - run: mvn test cobertura:cobertura
       - store_test_results:
           path: target/surefire-reports
 
