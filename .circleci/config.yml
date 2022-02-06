@@ -16,6 +16,7 @@ jobs:
     steps:
       # Checkout the code as the first step.
       - checkout
+      - browser-tools/install-browser-tools
       # Use mvn clean and package as the standard maven build phase
       - run:
           name: Build
@@ -24,11 +25,8 @@ jobs:
       - run:
           name: Test
           command: mvn test
-      - run:
-          name: "Run Jest and Collect Coverage Reports"
-          command: jest --collectCoverage=true
       - store_artifacts:
-          path: coverage
+          path: target
 
 workflows:
   # Below is the definition of your workflow.
